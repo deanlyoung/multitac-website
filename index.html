@@ -1,0 +1,415 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Multitac - The Universal Calculator/Notebook for Apple Platforms</title>
+  <meta name="description" content="Multitac - A cross-platform calculator/notebook app for iPhone, iPad, Mac, and Vision Pro with AI insights, TIQ vs. TAC Views, and exhaustive calculation support">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <link rel="stylesheet" href="css/styles.css">
+  
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  
+  <meta property="og:title" content="Multitac - Cross-Platform AI-Powered Calculator/Notebook">
+  <meta property="og:description" content="Think, calculate, and organize across iPhone, iPad, Mac, and Vision Pro with TIQ workflows, TAC views, and AI insights">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://deanlyoung.github.io/multitac.app">
+  <meta property="og:image" content="/assets/multitac-og.png">
+  
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Multitac - Cross-Platform AI-Powered Calculator/Notebook">
+  <meta name="twitter:description" content="Think, calculate, and organize across iPhone, iPad, Mac, and Vision Pro with TIQ workflows, TAC views, and AI insights">
+  <meta name="twitter:image" content="/assets/multitac-twitter.png">
+  
+  <style>
+    :root {
+      --bg: #FFFFFF;
+      --fg: #1D1D1F;
+      --muted: #86868B;
+      --accent: #0071E3;
+      --accent-hover: #0051BD;
+      --card: #F2F2F7;
+      --border: #CCCCCC;
+    }
+    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--fg);
+      line-height: 1.5;
+    }
+    
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    
+    a:hover {
+      color: var(--accent-hover);
+    }
+    
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      padding: 1rem 2rem;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+      z-index: 100;
+    }
+    
+    .header-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+    
+    .nav-links a {
+      margin-left: 2rem;
+      font-size: 0.875rem;
+    }
+    
+    .hero {
+      padding: 8rem 2rem 4rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: 600;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+      letter-spacing: -0.02em;
+    }
+    
+    .hero p {
+      font-size: 1.25rem;
+      color: var(--muted);
+      max-width: 600px;
+      margin: 0 auto 2rem;
+    }
+    
+    .hero .cta-button {
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      background: var(--accent);
+      color: white;
+      border-radius: 20px;
+      font-weight: 500;
+      margin-top: 1rem;
+      transition: background 0.2s;
+    }
+    
+    .hero .cta-button:hover {
+      background: var(--accent-hover);
+    }
+    
+    .features {
+      padding: 4rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .features h2 {
+      text-align: center;
+      margin-bottom: 3rem;
+      font-size: 2rem;
+    }
+    
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+    
+    .feature-card {
+      background: var(--card);
+      padding: 1.5rem;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    
+    .feature-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    }
+    
+    .feature-card h3 {
+      margin-bottom: 0.75rem;
+      color: var(--fg);
+    }
+    
+    .feature-card p {
+      color: var(--muted);
+      font-size: 0.875rem;
+    }
+    
+    .platforms {
+      padding: 4rem 2rem;
+      background: var(--card);
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .platforms h2 {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    
+    .platform-logos {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+    
+    .platform-logos img {
+      width: 80px;
+      height: 80px;
+      object-fit: contain;
+    }
+    
+    .tiq-tac {
+      padding: 4rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .tiq-tac h2 {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    
+    .tiq-tac .comparison {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    
+    .tiq-card, .tac-card {
+      background: var(--card);
+      padding: 1.5rem;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+    }
+    
+    .tiq-card h3, .tac-card h3 {
+      margin-bottom: 0.5rem;
+    }
+    
+    .tiq-card p, .tac-card p {
+      color: var(--muted);
+      font-size: 0.875rem;
+    }
+    
+    .docs {
+      padding: 4rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .docs h2 {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    
+    .docs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+    
+    .doc-card {
+      background: var(--card);
+      padding: 1.5rem;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+    }
+    
+    .doc-card h3 {
+      margin-bottom: 0.75rem;
+    }
+    
+    .doc-card ul {
+      padding-left: 1.5rem;
+    }
+    
+    .doc-card li {
+      margin-bottom: 0.5rem;
+    }
+    
+    footer {
+      padding: 2rem;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.875rem;
+      border-top: 1px solid var(--border);
+      margin-top: 4rem;
+    }
+    
+    @media (max-width: 480px) {
+      .hero h1 { font-size: 2rem; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-container">
+      <div class="logo">Multitac</div>
+      <nav>
+        <a href="#features">Features</a>
+        <a href="#platforms">Platforms</a>
+        <a href="#tiq-tac">TIQ vs TAC</a>
+        <a href="#docs">Docs</a>
+        <a href="https://deanlyoung.github.io/multitac.app/privacy.html" target="_blank">Privacy</a>
+        <a href="https://deanlyoung.github.io/multitac.app/terms.html" target="_blank">Terms</a>
+      </nav>
+    </div>
+  </header>
+  
+  <section class="hero">
+    <h1>A cross-platform calculator & notebook</h1>
+    <p>Think, calculate, and organize across iPhone, iPad, Mac, and Vision Pro. With TIQ workflows, AI insights, and exhaustive calculation support, Multitac transforms how you work.</p>
+    <a href="https://apps.apple.com/us/app/multitac" class="cta-button">Get Multitac</a>
+  </section>
+  
+  <section class="features" id="features">
+    <h2>Powerful Features</h2>
+    <div class="features-grid">
+      <div class="feature-card">
+        <h3>TIQ Workflows</h3>
+        <p>Thought-Inspiring Questions guide you through problem-solving with AI-powered suggestions and deterministic evaluation.</p>
+      </div>
+      <div class="feature-card">
+        <h3>TAC Views</h3>
+        <p>Thought-Activated Cards display results alongside your work, with live updates as you calculate.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Cross-Platform</h3>
+        <p>Works natively on iPhone, iPad, Mac, and Vision Pro with capability parity and platform-specific UI.</p>
+      </div>
+      <div class="feature-card">
+        <h3>AI Insights</h3>
+        <p>On-device AI provides suggestions, identifies patterns, and helps you discover relationships in your calculations.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Exhaustive Calculations</h3>
+        <p>Support for algebraic, financial, scientific, and financial calculations with full Calca compatibility.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Live Result Cards</h3>
+        <p>Instant visualizations including plots, comparisons, and range editors that update as you work.</p>
+      </div>
+    </div>
+  </section>
+  
+  <section class="platforms" id="platforms">
+    <h2>Run Multitac Everywhere</h2>
+    <div class="platform-logos">
+      <img src="assets/ios-icon.svg" alt="iPhone">
+      <img src="assets/ipad-icon.svg" alt="iPad">
+      <img src="assets/mac-icon.svg" alt="Mac">
+      <img src="assets/visionpro-icon.svg" alt="Vision Pro">
+    </div>
+    <p style="text-align: center; color: var(--muted); margin-top: 1rem;">From iPhone to Vision Pro, your work goes wherever you do.</p>
+  </section>
+  
+  <section class="tiq-tac" id="tiq-tac">
+    <h2>TIQ vs. TAC Views</h2>
+    <div class="comparison">
+      <div class="tiq-card">
+        <h3>TIQ (Thought-Inspiring Question)</h3>
+        <p>AI-led question-based workflow that guides you from problem to solution. Ask for specific outcomes or explore exploratory paths.</p>
+        <p>Gathers thoughts, values, and constraints → proposes visible TAC source</p>
+      </div>
+      <div class="tac-card">
+        <h3>TAC (Thought-Activated Calculation)</h3>
+        <p>Freeform text and calculations sharing one editor. Results appear beside or below the editor. Edit a card → dependents update automatically.</p>
+        <p>Core editor with live results, card pinning, and dependency tracking</p>
+      </div>
+    </div>
+  </section>
+  
+  <section class="docs" id="docs">
+    <h2>Documentation</h2>
+    <div class="docs-grid">
+      <div class="doc-card">
+        <h3>Getting Started</h3>
+        <ul>
+          <li>Install Multitac from the App Store</li>
+          <li>Create your first TAC or start a TIQ</li>
+          <li>Explore the library and Inspiration catalog</li>
+        </ul>
+      </div>
+      <div class="doc-card">
+        <h3>Calculation Support</h3>
+        <ul>
+          <li>Algebraic and symbolic manipulation</li>
+          <li>Financial functions and amortization</li>
+          <li>Scientific units and conversions</li>
+          <li>Matrix equations (2×2 systems)</li>
+          <li>Date and time duration calculations</li>
+        </ul>
+      </div>
+      <div class="doc-card">
+        <h3>TIQ System</h3>
+        <ul>
+          <li>Guided onboarding conversations</li>
+          <li>Personalization collection (45+ guided TIQs)</li>
+          <li>Model-driven proposal validation</li>
+          <li>Apply, Revise, Discard workflow</li>
+        </ul>
+      </div>
+      <div class="doc-card">
+        <h3>Platform Usage</h3>
+        <ul>
+          <li>iPhone: Compact library with push navigation</li>
+          <li>iPad: Sidebar-based library, adaptive split view</li>
+          <li>Mac: Document windows, tabs, menu commands</li>
+          <li>Vision Pro: Spatial windows, scene restoration</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  
+  <footer>
+    <p>&copy; 2024 Multitac. All rights reserved.</p>
+    <p><a href="https://deanlyoung.github.io/multitac.app/privacy.html">Privacy Policy</a> | <a href="https://deanlyoung.github.io/multitac.app/terms.html">Terms of Use</a></p>
+  </footer>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const navLinks = document.querySelectorAll('.nav-links a');
+      navLinks.forEach(link => {
+        link.addEventListener('click', function() {
+          const nav = document.querySelector('nav');
+          if (nav) {
+            nav.style.display = 'none';
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>
