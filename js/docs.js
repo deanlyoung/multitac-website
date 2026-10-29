@@ -17,6 +17,13 @@
     });
     status.textContent = query ? `${matches} documentation ${matches === 1 ? 'section' : 'sections'} found` : '';
     document.querySelector('.docs-layout')?.classList.toggle('is-searching', Boolean(query));
+    if (query) {
+      window.scrollTo({ top: 0, behavior: 'instant' });
+      window.getSelection()?.removeAllRanges();
+      window.find(query, false, false, true, false, true, false);
+    } else {
+      window.getSelection()?.removeAllRanges();
+    }
     return matches;
   }
 
@@ -34,6 +41,7 @@
     }
   });
   window.multitacDocs = {
+    highlightsMatches: true,
     search(query) { if (input) input.value = query || ''; return search(query); },
     goTo(section) { if (picker) picker.value = section || ''; document.getElementById(section)?.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
   };

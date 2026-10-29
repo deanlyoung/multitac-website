@@ -2,7 +2,10 @@
 from pathlib import Path
 import html, re, sys
 root = Path(__file__).resolve().parents[2]
-source = (root / 'Sources/CalcCore/EditorInput.swift').read_text()
+source_files = list((root / 'Sources').glob('*/EditorInput.swift'))
+if len(source_files) != 1:
+    raise SystemExit(f'Expected one EditorInput.swift source, found {len(source_files)}')
+source = source_files[0].read_text()
 docs_path = Path(__file__).resolve().parents[1] / 'docs/index.html'
 docs = docs_path.read_text()
 

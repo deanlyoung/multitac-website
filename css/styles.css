@@ -1,4 +1,5 @@
 :root {
+  color-scheme: light dark;
   --ink: #102445; --ink-2: #17345f; --paper: #fbf7ee; --paper-2: #f1eadc;
   --white: #fffdf8; --green: #236348; --green-2: #164633; --blue: #1767ce;
   --text: #172033; --muted: #606979; --line: rgba(16,36,69,.14);
@@ -99,6 +100,17 @@ h3 { margin: 0 0 10px; font-size: 1.25rem; letter-spacing: -.018em; }
 .visually-hidden { position: absolute!important; width: 1px!important; height: 1px!important; overflow: hidden!important; clip: rect(0,0,0,0)!important; white-space: nowrap!important; }
 .app-example-link { display: none; margin-top: 9px; font-weight: 750; }
 html[data-embedded="true"] .app-example-link { display: inline-block; }
+html[data-embedded="true"] .site-header,
+html[data-embedded="true"] .site-footer,
+html[data-embedded="true"] .page-hero .docs-tools,
+html[data-embedded="true"] .docs-search-status,
+html[data-embedded="true"] .docs-nav { display: none; }
+html[data-embedded="true"] body { overflow-x: hidden; }
+html[data-embedded="true"] .page-hero { padding: 28px 0 24px; }
+html[data-embedded="true"] .docs-layout { display: block; width: 100%; max-width: none; padding: 28px 0 64px; }
+html[data-embedded="true"] .docs-layout > .prose { width: 100%; min-width: 0; max-width: none; }
+html[data-embedded="true"] .prose { overflow-wrap: anywhere; }
+html[data-embedded="true"] .table-wrap { max-width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
 .docs-layout { display: grid; grid-template-columns: 235px minmax(0,760px); justify-content: space-between; gap: 70px; padding: 62px 0 100px; }
 .docs-layout.is-searching .docs-nav { opacity: .45; pointer-events: none; }
 .docs-nav { position: sticky; top: 94px; align-self: start; }
@@ -161,5 +173,44 @@ tr:last-child td { border-bottom: 0; }
   .docs-search kbd { display: none; }
   .docs-cta .button { margin-top: 18px; }
   .footer-links { justify-content: flex-start; margin-top: 24px; }
+  html[data-embedded="true"] .wrap { width: 100%; max-width: none; padding-left: 16px; padding-right: 16px; }
+  html[data-embedded="true"] .page-hero h1 { font-size: 2.15rem; }
+  html[data-embedded="true"] .prose h2 { font-size: 1.75rem; }
+  html[data-embedded="true"] table { width: 100%; table-layout: fixed; font-size: .82rem; }
+  html[data-embedded="true"] th,
+  html[data-embedded="true"] td { overflow-wrap: anywhere; word-break: normal; padding: 10px 8px; }
+  html[data-embedded="true"] .prose pre { white-space: pre-wrap; overflow-wrap: anywhere; word-break: break-word; padding: 16px; }
+}
+@media (prefers-color-scheme:dark) {
+  :root {
+    --ink: #f4f1e8; --ink-2: #e4eaf3; --paper: #101722; --paper-2: #182230;
+    --white: #172230; --green: #83d2aa; --green-2: #b0e4c8; --blue: #7eb4ff;
+    --text: #e6ebf2; --muted: #aeb8c6; --line: rgba(230,235,242,.16);
+    --shadow: 0 28px 70px rgba(0,0,0,.34);
+  }
+  .site-header { background: rgba(16,23,34,.9); }
+  .skip-link { background: #f4f1e8; color: #102445; }
+  .hero::before { background: rgba(126,180,255,.1); }
+  .lede { color: #bdc6d3; }
+  .button { color: #102445; }
+  .button:hover { color: #102445; }
+  .button.secondary { color: var(--green); }
+  .button.secondary:hover { background: rgba(131,210,170,.1); color: var(--green-2); }
+  .notebook-window { border-color: rgba(230,235,242,.18); }
+  .window-bar { background: rgba(24,34,48,.82); }
+  .window-dot { background: #526071; }
+  .result-pane { background: #131e2a; }
+  .line-no { color: #738093; }
+  .note-line,.prose p,.prose li { color: #c2cad6; }
+  .section.alt { background: #080d15; }
+  .feature { background: rgba(23,34,48,.72); }
+  .feature-number { background: rgba(131,210,170,.12); }
+  .platform,.trust-item,.docs-cta,.feature-index article { background: var(--white); }
+  .docs-search,.docs-jump { border-color: rgba(230,235,242,.2); background: rgba(23,34,48,.82); box-shadow: 0 9px 28px rgba(0,0,0,.22); }
+  .docs-search kbd { background: rgba(230,235,242,.08); }
+  .prose code,.code-chip { background: #263243; }
+  .prose pre { background: #080d15; color: #f4f1e8; }
+  .callout { background: rgba(131,210,170,.09); }
+  ::selection { background: rgba(126,180,255,.35); }
 }
 @media (prefers-reduced-motion:reduce) { html { scroll-behavior: auto; } *,*::before,*::after { transition-duration:.01ms!important; animation-duration:.01ms!important; } }
