@@ -118,6 +118,8 @@ html[data-embedded="true"] .table-wrap { max-width: 100%; overflow-x: auto; -web
 .docs-nav a { display: block; padding: 7px 0; color: var(--muted); font-size: .9rem; text-decoration: none; }
 .docs-nav a:hover { color: var(--green); }
 .prose section { padding: 0 0 54px; scroll-margin-top: 96px; }
+.prose h3[id] { scroll-margin-top: 96px; }
+html[data-embedded="true"] .prose h3[id] { scroll-margin-top: 12px; }
 .prose h2 { font-size: clamp(1.85rem,3vw,2.7rem); }
 .prose h3 { margin-top: 28px; }
 .prose p,.prose li { color: #414b5b; }
