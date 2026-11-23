@@ -38,7 +38,7 @@ speed * time in km</code></pre><ul><li>Angles default to radians; explicit <code
 $100 + €50 * dollarsPerEuro :::: $154</code></pre>
 <p>To flip the rate, divide 1 by it. Then multiply a dollar amount by the flipped rate to get euros.</p>
 <pre><code>eurosPerDollar = 1 / dollarsPerEuro
-$108 * eurosPerDollar :::: €100</code></pre>
+round($100 * eurosPerDollar, 2) :::: €92.59</code></pre>
 <p>Update <code>dollarsPerEuro</code> when you want to use a different rate. The flipped rate and both calculations update automatically.</p>
 <h3 id="temperature-calculations">Temperature calculations</h3>
 <p>Subtract two thermometer readings to get a temperature difference. Use <code>Δ</code> or <code>change</code> to enter a difference. Results always show <code>Δ</code> for differences.</p>
